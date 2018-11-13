@@ -28,13 +28,20 @@ class ViewController: UIViewController {
     viewModel.data.drive(tableView.rx.items(cellIdentifier: "Cell")) { _, repository, cell in
       cell.textLabel?.text = repository.repoName
       cell.detailTextLabel?.text = repository.repoURL
-    }.addDisposableTo(disposeBag)
+      }.disposed(by: disposeBag)
+    
+    searchBar.rx.text.orEmpty.bind(to: viewModel.searchText).disposed(by: disposeBag)
+    
+    viewModel.data.asDriver()
+      .map { "\($0.count) Repositories" }
+      .drive(navigationItem.rx.title)
+      .disposed(by: disposeBag)
   }
 
   func configureSearchBar() {
     searchController.obscuresBackgroundDuringPresentation = false
     searchBar.showsCancelButton = true
-    searchBar.text = "Sreejith"
+    searchBar.text = "sree127"
     searchBar.placeholder = "Enter GitHub ID, e.g., \"sree27\""
     tableView.tableHeaderView = searchController.searchBar
     definesPresentationContext = true

@@ -14,6 +14,12 @@ class ViewModel {
   let searchText = Variable("")
   
   lazy var data: Driver<[Repository]> = {
-    return Observable.of([Repository]()).asDriver(onErrorJustReturn: [])
+    
+    return searchText
+      .asObservable()
+      .throttle(0.3, scheduler: MainScheduler.instance)
+      .distinctUntilChanged()
+      .flatMapLatest(APIManager.repositoriesBy)
+      .asDriver(onErrorJustReturn: [])
   }()
 }
