@@ -14,7 +14,7 @@ import UIKit
 
 protocol GithubReposPresentationLogic
 {
-  func presentSomething(response: GithubRepos.Something.Response)
+  func presentSomething(response: GithubRepos.FetchRepos.Response)
 }
 
 class GithubReposPresenter: GithubReposPresentationLogic
@@ -23,9 +23,9 @@ class GithubReposPresenter: GithubReposPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: GithubRepos.Something.Response)
+  func presentSomething(response: GithubRepos.FetchRepos.Response)
   {
-    let viewModel = GithubRepos.Something.ViewModel()
+    let viewModel = GithubRepos.FetchRepos.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }
 }

@@ -14,7 +14,7 @@ import UIKit
 
 protocol GithubReposDisplayLogic: class
 {
-  func displaySomething(viewModel: GithubRepos.Something.ViewModel)
+  func displaySomething(viewModel: GithubRepos.FetchRepos.ViewModel)
 }
 
 class GithubReposViewController: UIViewController, GithubReposDisplayLogic
@@ -78,11 +78,11 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   
   func doSomething()
   {
-    let request = GithubRepos.Something.Request()
+    let request = GithubRepos.FetchRepos.Request()
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: GithubRepos.Something.ViewModel)
+  func displaySomething(viewModel: GithubRepos.FetchRepos.ViewModel)
   {
     //nameTextField.text = viewModel.name
   }

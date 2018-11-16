@@ -14,7 +14,7 @@ import UIKit
 
 protocol GithubReposBusinessLogic
 {
-  func doSomething(request: GithubRepos.Something.Request)
+  func doSomething(request: GithubRepos.FetchRepos.Request)
 }
 
 protocol GithubReposDataStore
@@ -30,12 +30,12 @@ class GithubReposInteractor: GithubReposBusinessLogic, GithubReposDataStore
   
   // MARK: Do something
   
-  func doSomething(request: GithubRepos.Something.Request)
+  func doSomething(request: GithubRepos.FetchRepos.Request)
   {
     worker = GithubReposWorker()
-    worker?.doSomeWork()
+    worker?.repositoriesBy(request.userId)
     
-    let response = GithubRepos.Something.Response()
+    let response = GithubRepos.FetchRepos.Response()
     presenter?.presentSomething(response: response)
   }
 }

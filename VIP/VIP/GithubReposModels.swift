@@ -16,16 +16,20 @@ enum GithubRepos
 {
   // MARK: Use cases
   
-  enum Something
+  enum FetchRepos
   {
     struct Request
     {
+      var userId: String?
     }
     struct Response
     {
+      var response: [[String: Any]]?
     }
     struct ViewModel
     {
+      var repoName: String
+      var repoURL: String
     }
   }
 }
