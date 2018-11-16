@@ -11,10 +11,33 @@
 //
 
 import UIKit
+import RxSwift
 
-class GithubReposWorker
-{
-  func doSomeWork()
-  {
+class GithubReposWorker {
+  
+  func repositoriesBy(_ githubId: String?) -> Observable<[GithubRepos.FetchRepos.ViewModel]> {
+    guard let githubId = githubId,
+      !githubId.isEmpty,
+      let url = URL(string: "https://api.github.com/users/\(githubId)/repos") else {
+        return Observable.just([])
+    }
+    return URLSession.shared.rx.json(url: url).retry(3).map(parse)
+  }
+  
+  func parse(json: Any) -> [GithubRepos.FetchRepos.ViewModel] {
+    guard let items = json as? [[String: Any]] else {
+      return []
+    }
+    
+    var repositories = [GithubRepos.FetchRepos.ViewModel]()
+    
+    items.forEach {
+      guard let repoName = $0["name"] as? String,
+        let repoURL = $0["html_url"] as? String else {
+          return
+      }
+      repositories.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL))
+    }
+    return repositories
   }
 }
