@@ -23,9 +23,22 @@ class GithubReposPresenter: GithubReposPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: GithubRepos.FetchRepos.Response)
-  {
-    let viewModel = GithubRepos.FetchRepos.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  func presentSomething(response: GithubRepos.FetchRepos.Response) {
+    viewController?.displaySomething(viewModel: response.result?.flatMapLatest(parse))
+  }
+  
+  func parse(response: GithubRepos.FetchRepos.Response) -> [GithubRepos.FetchRepos.ViewModel] {
+    
+    var viewModel = [GithubRepos.FetchRe„pos.ViewModel]()
+    
+    
+    response.result.forEach {
+      guard let repoName = $0["name"] as? String,
+        let repoURL = $0["html_url"] as? String else {
+          return
+      }
+      viewModel.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL))
+    }
+    return viewModel
   }
 }

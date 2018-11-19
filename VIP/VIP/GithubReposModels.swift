@@ -10,7 +10,8 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
+import RxSwift
 
 enum GithubRepos
 {
@@ -24,7 +25,7 @@ enum GithubRepos
     }
     struct Response
     {
-      var response: [[String: Any]]?
+      var result: Observable<[[String: Any]]>?
     }
     struct ViewModel
     {
