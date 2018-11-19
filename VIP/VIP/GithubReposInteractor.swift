@@ -33,9 +33,7 @@ class GithubReposInteractor: GithubReposBusinessLogic, GithubReposDataStore
   func doSomething(request: GithubRepos.FetchRepos.Request)
   {
     worker = GithubReposWorker()
-    worker?.repositoriesBy(request.userId)
-    
-    let response = GithubRepos.FetchRepos.Response()
-    presenter?.presentSomething(response: response)
+    let fetchedRepos = worker?.repositoriesBy(request.userId ?? "")
+    presenter?.presentSomething(response: GithubRepos.FetchRepos.Response(result: fetchedRepos))
   }
 }
