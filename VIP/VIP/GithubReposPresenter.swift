@@ -12,6 +12,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 protocol GithubReposPresentationLogic
 {
@@ -26,21 +27,18 @@ class GithubReposPresenter: GithubReposPresentationLogic
   
   func presentSomething(response: GithubRepos.FetchRepos.Response) {
     
-  }
-  
-  func parse(response: GithubRepos.FetchRepos.Response) -> [GithubRepos.FetchRepos.ViewModel] {
-    
-    var viewModel = [GithubRepos.FetchRepos.ViewModel]()
-
-    
-    
-//    response.result.forEach {
-//      guard let repoName = $0["name"] as? String,
-//        let repoURL = $0["html_url"] as? String else {
-//          return
-//      }
-//      viewModel.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL))
-//    }
-    return viewModel
+    let some = response.result?.flatMap { value -> Observable<[GithubRepos.FetchRepos.ViewModel]> in
+      
+      let itemMap = value.map { item -> GithubRepos.FetchRepos.ViewModel in
+        guard let repoName = item["name"] as? String,
+          let repoURL = item["html_url"] as? String else {
+            return GithubRepos.FetchRepos.ViewModel(repoName: "", repoURL: "")
+        }
+        return GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL)
+      }
+      
+      return Observable.from(optional: itemMap)
+    }
+    viewController?.displaySomething(viewModel: some!.asDriver(onErrorJustReturn: []))
   }
 }

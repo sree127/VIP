@@ -33,7 +33,12 @@ class GithubReposInteractor: GithubReposBusinessLogic, GithubReposDataStore
   func doSomething(request: GithubRepos.FetchRepos.Request)
   {
     worker = GithubReposWorker()
-    let fetchedRepos = worker?.repositoriesBy(request.userId ?? "")
-    presenter?.presentSomething(response: GithubRepos.FetchRepos.Response(result: fetchedRepos))
+    let fetchedRepos = worker?.repositoriesBy(request.userId ?? "sree127").subscribe { event in
+      switch event {
+      case .next(let ghRepo):
+      default:
+        break
+      }
+    }
   }
 }
