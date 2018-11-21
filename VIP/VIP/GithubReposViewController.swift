@@ -21,6 +21,10 @@ protocol GithubReposDisplayLogic: class
 
 class GithubReposViewController: UIViewController, GithubReposDisplayLogic
 {
+  
+  
+  @IBOutlet weak var nameLabel: UILabel!
+  
   var interactor: GithubReposBusinessLogic?
   var router: (NSObjectProtocol & GithubReposRoutingLogic & GithubReposDataPassing)?
 
@@ -86,6 +90,6 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   
   func displaySomething(viewModel: Driver<[GithubRepos.FetchRepos.ViewModel]>)
   {
-    //nameTextField.text = viewModel.name
+    
   }
 }

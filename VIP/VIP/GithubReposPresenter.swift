@@ -12,6 +12,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 protocol GithubReposPresentationLogic
 {
@@ -25,22 +26,34 @@ class GithubReposPresenter: GithubReposPresentationLogic
   // MARK: Do something
   
   func presentSomething(response: GithubRepos.FetchRepos.Response) {
-    
+    let some = response.result?.flatMap { value -> Observable<[GithubRepos.FetchRepos.ViewModel]> in
+      var viewMod = [GithubRepos.FetchRepos.ViewModel]()
+      viewMod.append(GithubRepos.FetchRepos.ViewModel(repoName: "sree127", repoURL: "sree127"))
+      return Observable.from(optional: viewMod)
+    }
+    viewController?.displaySomething(viewModel: some!.asDriver(onErrorJustReturn: []))
   }
   
-  func parse(response: GithubRepos.FetchRepos.Response) -> [GithubRepos.FetchRepos.ViewModel] {
-    
-    var viewModel = [GithubRepos.FetchRepos.ViewModel]()
-
-    
-    
-//    response.result.forEach {
+  
+//  func parse(response: GithubRepos.FetchRepos.Response) -> Observable<[GithubRepos.FetchRepos.ViewModel]> {
+//    return response.result.map(response.result)
+//  }
+//
+//  func parseRepos(items: [[String: Any]]?) -> [GithubRepos.FetchRepos.ViewModel] {
+//
+//    guard let items = items else {
+//      return []
+//    }
+//
+//    var repositories = [GithubRepos.FetchRepos.ViewModel]()
+//
+//    items.forEach {
 //      guard let repoName = $0["name"] as? String,
 //        let repoURL = $0["html_url"] as? String else {
 //          return
 //      }
-//      viewModel.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL))
+//      repositories.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL))
 //    }
-    return viewModel
-  }
+//    return repositories
+//  }
 }
