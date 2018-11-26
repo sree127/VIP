@@ -36,7 +36,7 @@ class GithubReposInteractor: GithubReposBusinessLogic, GithubReposDataStore
     let fetchedRepos = worker?.repositoriesBy(request.userId ?? "sree127").subscribe { event in
       switch event {
       case .next(let repos):
-        print("repos **** \(repos)")
+        self.presenter?.presentSomething(response: GithubRepos.FetchRepos.Response(result: repos))
       default:
         break
       }

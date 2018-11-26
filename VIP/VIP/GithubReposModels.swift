@@ -25,7 +25,7 @@ enum GithubRepos
     }
     struct Response
     {
-      var result: Observable<[[String: Any]]>?
+      var result: [[String: Any]]?
     }
     struct ViewModel
     {
