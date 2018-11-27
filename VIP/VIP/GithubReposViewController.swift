@@ -11,12 +11,10 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 protocol GithubReposDisplayLogic: class
 {
-  func displaySomething(viewModel: Driver<[GithubRepos.FetchRepos.ViewModel]>)
+  func displaySomething(viewModel: [GithubRepos.FetchRepos.ViewModel])
 }
 
 class GithubReposViewController: UIViewController, GithubReposDisplayLogic
@@ -88,8 +86,10 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: Driver<[GithubRepos.FetchRepos.ViewModel]>)
+  func displaySomething(viewModel: [GithubRepos.FetchRepos.ViewModel])
   {
-    
+    DispatchQueue.main.async {
+      self.nameLabel.text = viewModel.first?.repoName
+    }
   }
 }
