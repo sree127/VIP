@@ -88,6 +88,8 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   
   func displaySomething(viewModel: [GithubRepos.FetchRepos.ViewModel])
   {
-    
+    DispatchQueue.main.async {
+      self.nameLabel.text = viewModel.first?.repoName
+    }
   }
 }
