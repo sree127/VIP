@@ -20,8 +20,9 @@ protocol GithubReposDisplayLogic: class
 class GithubReposViewController: UIViewController, GithubReposDisplayLogic
 {
   
+  @IBOutlet weak var tableView: UITableView!
   
-  @IBOutlet weak var nameLabel: UILabel!
+  var viewModel: [GithubRepos.FetchRepos.ViewModel] = []
   
   var interactor: GithubReposBusinessLogic?
   var router: (NSObjectProtocol & GithubReposRoutingLogic & GithubReposDataPassing)?
@@ -88,8 +89,25 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   
   func displaySomething(viewModel: [GithubRepos.FetchRepos.ViewModel])
   {
+    self.viewModel = viewModel
     DispatchQueue.main.async {
-      self.nameLabel.text = viewModel.first?.repoName
+      self.tableView.reloadData()
     }
+  }
+}
+
+extension GithubReposViewController: UITableViewDelegate, UITableViewDataSource {
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return viewModel.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+    
+    cell.textLabel?.text = viewModel[indexPath.row].repoName
+    cell.detailTextLabel?.text = viewModel[indexPath.row].repoURL
+    
+    return cell
   }
 }
