@@ -21,6 +21,7 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
 {
   
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var searchBar: UISearchBar!
   
   var viewModel: [GithubRepos.FetchRepos.ViewModel] = []
   
