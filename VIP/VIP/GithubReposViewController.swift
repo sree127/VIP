@@ -21,6 +21,7 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
 {
   
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var searchBar: UISearchBar!
   
   var viewModel: [GithubRepos.FetchRepos.ViewModel] = []
   
@@ -109,5 +110,14 @@ extension GithubReposViewController: UITableViewDelegate, UITableViewDataSource 
     cell.detailTextLabel?.text = viewModel[indexPath.row].repoURL
     
     return cell
+  }
+}
+
+
+extension GithubReposViewController: UISearchBarDelegate {
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    let request = GithubRepos.FetchRepos.Request(userId: searchBar.text)
+    interactor?.doSomething(request: request)
   }
 }
