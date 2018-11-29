@@ -83,6 +83,9 @@
                                     <constraint firstAttribute="height" constant="56" id="ARP-hb-ej7"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gJp-ob-LnU" id="amp-F3-WKJ"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

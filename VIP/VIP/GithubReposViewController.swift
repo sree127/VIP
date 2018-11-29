@@ -112,3 +112,12 @@ extension GithubReposViewController: UITableViewDelegate, UITableViewDataSource 
     return cell
   }
 }
+
+
+extension GithubReposViewController: UISearchBarDelegate {
+  
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    let request = GithubRepos.FetchRepos.Request(userId: searchBar.text)
+    interactor?.doSomething(request: request)
+  }
+}
