@@ -11,6 +11,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 protocol GithubReposDisplayLogic: class
 {
@@ -28,6 +30,8 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   var interactor: GithubReposBusinessLogic?
   var router: (NSObjectProtocol & GithubReposRoutingLogic & GithubReposDataPassing)?
 
+  let disposeBag = DisposeBag()
+  
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -76,6 +80,7 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   {
     super.viewDidLoad()
     doSomething()
+    provideThrottleAndSearch()
   }
   
   // MARK: Do something
@@ -121,3 +126,22 @@ extension GithubReposViewController: UISearchBarDelegate {
     interactor?.doSomething(request: request)
   }
 }
+
+extension GithubReposViewController {
+  // provide throttle
+  func provideThrottleAndSearch() {
+  searchBar.rx.text.orEmpty
+      .observeOn(MainScheduler.instance)
+      .throttle(1, scheduler: MainScheduler.instance)
+      .subscribe { event in
+      switch event {
+      case .next(let element):
+        let request = GithubRepos.FetchRepos.Request(userId: element)
+        self.interactor?.doSomething(request: request)
+      default:
+        break
+      }
+    }.disposed(by: disposeBag)
+  }
+}
+
