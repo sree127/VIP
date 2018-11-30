@@ -132,7 +132,7 @@ extension GithubReposViewController {
   func provideThrottleAndSearch() {
   searchBar.rx.text.orEmpty
       .observeOn(MainScheduler.instance)
-      .throttle(1, scheduler: MainScheduler.instance)
+      .throttle(0.3, scheduler: MainScheduler.instance)
       .subscribe { event in
       switch event {
       case .next(let element):
