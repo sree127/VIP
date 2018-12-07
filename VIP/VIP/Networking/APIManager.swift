@@ -10,12 +10,12 @@ import RxSwift
 
 class APIManager {
   
-  static func repositoriesBy(_ githubId: String) -> Observable<[Repository]> {
+  static func repositoriesBy(_ githubId: String) -> Single<[Repository]> {
     guard !githubId.isEmpty,
       let url = URL(string: "https://api.github.com/users/\(githubId)/repos") else {
-        return Observable.just([])
+        return Single.just([])
     }
-    return URLSession.shared.rx.json(url: url).retry(3).map(parse)
+    return URLSession.shared.rx.json(url: url).retry(3).map(parse).asSingle()
   }
   
   static func parse(json: Any) -> [Repository] {
