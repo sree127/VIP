@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol GithubReposRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func showDetails()
 }
 
 protocol GithubReposDataPassing
@@ -28,6 +28,12 @@ class GithubReposRouter: NSObject, GithubReposRoutingLogic, GithubReposDataPassi
   var dataStore: GithubReposDataStore?
   
   // MARK: Routing
+  
+  func showDetails() {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let showDetailsVC = storyboard.instantiateViewController(withIdentifier: "ShowDetailViewController") as! ShowDetailViewController
+    viewController?.navigationController?.pushViewController(showDetailsVC, animated: true)
+  }
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)
   //{
