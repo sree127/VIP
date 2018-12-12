@@ -23,7 +23,8 @@ class ShowDetailViewController: UIViewController /* UICollectionViewController o
   var router: (NSObjectProtocol & ShowDetailRoutingLogic & ShowDetailDataPassing)?
 
   // MARK: IBOutlets
-
+  @IBOutlet weak var showLabel: UILabel!
+  
   // MARK: Object lifecycle
 
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
