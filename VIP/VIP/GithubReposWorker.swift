@@ -15,13 +15,16 @@ import RxSwift
 
 class GithubReposWorker {
   
-  func repositoriesBy(_ githubId: String?) -> Observable<[[String: Any]]> {
+  func repositoriesBy(_ githubId: String?) -> Single<[[String: Any]]> {
     guard let githubId = githubId,
       !githubId.isEmpty,
       let url = URL(string: "https://api.github.com/users/\(githubId)/repos") else {
-        return Observable.just([])
+        return Single.just([])
     }
-    return URLSession.shared.rx.json(url: url).retry(3).map(parse)
+    return URLSession.shared.rx
+      .json(url: url)
+      .map(parse)
+      .asSingle()
   }
   
   func parse(json: Any) -> [[String: Any]] {
