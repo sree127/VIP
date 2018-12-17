@@ -21,9 +21,7 @@ protocol ShowDetailBusinessLogic {
 
 /** Property injection protocol */
 protocol ShowDetailDataStore {
-  /* Example:
   var name: String { get set }
-  */
 }
 
 /** Model dependency injection protocol */
@@ -37,10 +35,7 @@ class ShowDetailInteractor: ShowDetailBusinessLogic, ShowDetailDataStore, ShowDe
 
   var presenter: ShowDetailPresentationLogic?
   var worker: ShowDetailWorker?
-  /* Example:
-  var name: String
-  var modelContainer: ModelContainer
-  */
+  var name: String = ""
 
   /* Example:
   func doSomething(request: ShowDetail.Something.Request) {

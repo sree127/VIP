@@ -116,6 +116,10 @@ extension GithubReposViewController: UITableViewDelegate, UITableViewDataSource 
     
     return cell
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    router?.showDetails(with: searchBar.text ?? "")
+  }
 }
 
 

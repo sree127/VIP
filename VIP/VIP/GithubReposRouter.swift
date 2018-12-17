@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol GithubReposRoutingLogic
 {
-  func showDetails()
+func showDetails(with userName: String)
 }
 
 protocol GithubReposDataPassing
@@ -29,9 +29,11 @@ class GithubReposRouter: NSObject, GithubReposRoutingLogic, GithubReposDataPassi
   
   // MARK: Routing
   
-  func showDetails() {
+  func showDetails(with userName: String) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let showDetailsVC = storyboard.instantiateViewController(withIdentifier: "ShowDetailViewController") as! ShowDetailViewController
+    var injectionProvider = showDetailsVC.router?.injectionProvider
+    injectionProvider?.name = userName
     viewController?.navigationController?.pushViewController(showDetailsVC, animated: true)
   }
   
