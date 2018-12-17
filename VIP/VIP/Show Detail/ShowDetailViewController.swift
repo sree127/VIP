@@ -72,6 +72,8 @@ class ShowDetailViewController: UIViewController /* UICollectionViewController o
     /* Example:
     doSomething()
     */
+    
+    self.showLabel.text = router?.injectionProvider?.name
   }
 
   // MARK: UserActions
