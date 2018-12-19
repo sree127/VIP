@@ -23,6 +23,7 @@ class GithubReposWorker {
     }
     return URLSession.shared.rx
       .json(url: url)
+      .materialize()
       .map(parse)
       .asSingle()
   }
