@@ -18,7 +18,7 @@ class GithubReposWorker {
   func repositoriesBy(_ githubId: String?) -> Single<[[String: Any]]> {
     guard let githubId = githubId,
       !githubId.isEmpty,
-      let url = URL(string: "https://api.github.com/users/\(githubId)/repos") else {
+      let url = URL(string: "https://api.github.com/users/\(githubId.lowercased())/repos") else {
         return Single.just([])
     }
     return URLSession.shared.rx
