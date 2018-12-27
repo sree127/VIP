@@ -15,14 +15,15 @@ import UIKit
 enum ShowDetail {
   // MARK: Use cases
 
-  /* Example:
-  enum Something {
+  enum RepoStars {
     struct Request {
     }
     struct Response {
+      let data: Data?
+      let error: Error?
     }
     struct ViewModel {
+      let starsCount: Int
     }
   }
-  */
 }
