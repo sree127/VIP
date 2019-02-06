@@ -16,7 +16,7 @@ import RxCocoa
 
 protocol GithubReposPresentationLogic
 {
-  func presentSomething(response: GithubRepos.FetchRepos.Response)
+  func presentRepos(response: GithubRepos.FetchRepos.Response)
 }
 
 class GithubReposPresenter: GithubReposPresentationLogic
@@ -25,13 +25,15 @@ class GithubReposPresenter: GithubReposPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: GithubRepos.FetchRepos.Response) {
+  func presentRepos(response: GithubRepos.FetchRepos.Response) {
     
     var viewModel = [GithubRepos.FetchRepos.ViewModel]()
     response.result?.forEach { item in
       if let repoName = item["name"] as? String,
         let repoURL = item["html_url"] as? String {
-          viewModel.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName, repoURL: repoURL))
+          viewModel.append(GithubRepos.FetchRepos.ViewModel(repoName: repoName,
+                                                            repoURL: repoURL,
+                                                            error: "error"))
       }
     }
     
