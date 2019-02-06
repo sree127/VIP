@@ -31,6 +31,7 @@ enum GithubRepos
     {
       var repoName: String
       var repoURL: String
+      var error: String
     }
   }
 }
