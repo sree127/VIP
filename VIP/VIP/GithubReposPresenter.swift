@@ -28,6 +28,13 @@ class GithubReposPresenter: GithubReposPresentationLogic
   func presentRepos(response: GithubRepos.FetchRepos.Response) {
     
     var viewModel = [GithubRepos.FetchRepos.ViewModel]()
+    if let error = response.error {
+        let viewModel = GithubRepos.FetchRepos.ViewModel(repoName: "",
+                                                         repoURL: "",
+                                                         error: error)
+        viewController?.displaySomething(viewModel: viewModel)
+        return
+    }
     response.result?.forEach { item in
       if let repoName = item["name"] as? String,
         let repoURL = item["html_url"] as? String {
