@@ -32,7 +32,7 @@ class GithubReposPresenter: GithubReposPresentationLogic
         let viewModel = GithubRepos.FetchRepos.ViewModel(repoName: "",
                                                          repoURL: "",
                                                          error: error)
-        viewController?.displaySomething(viewModel: viewModel)
+        viewController?.displaySomething(viewModel: [viewModel])
         return
     }
     response.result?.forEach { item in

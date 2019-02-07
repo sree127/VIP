@@ -39,7 +39,7 @@ class GithubReposInteractor: GithubReposBusinessLogic, GithubReposDataStore
         self.presenter?.presentRepos(response: GithubRepos.FetchRepos.Response(result: repos,
                                                                                error: nil))
       case .error(let error):
-        self.presenter?.presentRepos(response: GithubRepos.FetchRepos.Response(result: repos,
+        self.presenter?.presentRepos(response: GithubRepos.FetchRepos.Response(result: nil,
                                                                                error: error.localizedDescription))
       }
     }
