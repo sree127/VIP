@@ -96,6 +96,10 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   func displaySomething(viewModel: [GithubRepos.FetchRepos.ViewModel])
   {
     self.viewModel = viewModel
+    if let error = viewModel.first?.error {
+      print("ERROR **** ", error)
+      return
+    }
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }

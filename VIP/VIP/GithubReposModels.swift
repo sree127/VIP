@@ -26,6 +26,7 @@ enum GithubRepos
     struct Response
     {
       var result: [[String: Any]]?
+      var error: String?
     }
     struct ViewModel
     {
