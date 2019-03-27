@@ -90,7 +90,7 @@ class GithubReposViewController: UIViewController, GithubReposDisplayLogic
   func doSomething()
   {
     let request = GithubRepos.FetchRepos.Request()
-    interactor?.doSomething(request: request)
+    interactor?.fetchRepos(request: request)
   }
   
   func displaySomething(viewModel: [GithubRepos.FetchRepos.ViewModel])
