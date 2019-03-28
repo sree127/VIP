@@ -127,7 +127,7 @@ extension GithubReposViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     let request = GithubRepos.FetchRepos.Request(userId: searchBar.text)
-    interactor?.doSomething(request: request)
+    interactor?.fetchRepos(request: request)
   }
 }
 
@@ -141,7 +141,7 @@ extension GithubReposViewController {
       switch event {
       case .next(let element):
         let request = GithubRepos.FetchRepos.Request(userId: element)
-        self.interactor?.doSomething(request: request)
+        self.interactor?.fetchRepos(request: request)
       default:
         break
       }
