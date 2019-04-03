@@ -17,7 +17,7 @@ class ViewModel {
     
     return searchText
       .asObservable()
-      .throttle(0.3, scheduler: MainScheduler.instance)
+      .debounce(0.3, scheduler: MainScheduler.instance)
       .distinctUntilChanged()
       .flatMapLatest(APIManager.repositoriesBy)
       .asDriver(onErrorJustReturn: [])
