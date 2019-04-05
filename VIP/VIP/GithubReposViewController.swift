@@ -122,7 +122,7 @@ extension GithubReposViewController: UITableViewDelegate, UITableViewDataSource 
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    router?.showDetails(with: searchBar.text ?? "")
+    router?.showDetails(with: viewModel[indexPath.row].repoName)
   }
 }
 
