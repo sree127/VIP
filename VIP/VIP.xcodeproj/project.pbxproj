@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9E0500EB219AE12400B18F07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0500EA219AE12400B18F07 /* AppDelegate.swift */; };
-		9E0500ED219AE12400B18F07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0500EC219AE12400B18F07 /* ViewController.swift */; };
 		9E0500F0219AE12400B18F07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0500EE219AE12400B18F07 /* Main.storyboard */; };
 		9E0500F2219AE12500B18F07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E0500F1219AE12500B18F07 /* Assets.xcassets */; };
 		9E0500F5219AE12500B18F07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0500F3219AE12500B18F07 /* LaunchScreen.storyboard */; };
@@ -46,7 +45,6 @@
 		5B4794A28D51E76453781D2B /* Pods_VIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E0500E7219AE12400B18F07 /* VIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E0500EA219AE12400B18F07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E0500EC219AE12400B18F07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9E0500EF219AE12400B18F07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E0500F1219AE12500B18F07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E0500F4219AE12500B18F07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				9EC9ED4D21B57A3D00688086 /* Show Detail */,
 				9E05010A219AE2AE00B18F07 /* View Model */,
 				9E0500EA219AE12400B18F07 /* AppDelegate.swift */,
-				9E0500EC219AE12400B18F07 /* ViewController.swift */,
 				9E0B54A6219C3B5900BC2EDC /* GithubReposPresenter.swift */,
 				9E0B54A7219C3B5900BC2EDC /* GithubReposWorker.swift */,
 				9E0B54A8219C3B5900BC2EDC /* GithubReposRouter.swift */,
@@ -334,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EC9ED5921B57A5000688086 /* ShowDetailModels.swift in Sources */,
-				9E0500ED219AE12400B18F07 /* ViewController.swift in Sources */,
 				9E0B54B0219C3B5900BC2EDC /* GithubReposViewController.swift in Sources */,
 				9E0B54AF219C3B5900BC2EDC /* GithubReposModels.swift in Sources */,
 				9EC9ED5B21B57A5000688086 /* ShowDetailInteractor.swift in Sources */,
