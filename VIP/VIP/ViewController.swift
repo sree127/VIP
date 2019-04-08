@@ -17,7 +17,6 @@ class ViewController: UIViewController {
   let searchController = UISearchController(searchResultsController: nil)
   var searchBar: UISearchBar { return searchController.searchBar }
   
-  var viewModel = ViewModel()
   let disposeBag = DisposeBag()
   
   override func viewDidLoad() {
